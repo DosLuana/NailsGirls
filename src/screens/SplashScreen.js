@@ -4,7 +4,7 @@ import { View, Image, StyleSheet } from 'react-native';
 export default function SplashScreen({ navigation }) {
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('AppTabs'); 
+      navigation.replace('Inicio'); 
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   logo: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     marginBottom: 20,
   },
 });

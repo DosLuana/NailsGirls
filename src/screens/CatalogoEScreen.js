@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { db, auth } from './firebaseconfig'; // Assegure-se de ter o auth importado
+import { db, auth } from './firebaseconfig';
 import { collection, getDocs, updateDoc, doc, onSnapshot } from 'firebase/firestore';
 
-const CatalogoScreen = () => {
+const CatalogoEScreen = () => {
   const [conteudosData, setConteudosData] = useState([]);
   const [favoritos, setFavoritos] = useState([]);
   const [userId, setUserId] = useState(null); 
@@ -27,7 +27,7 @@ const CatalogoScreen = () => {
         const querySnapshot = await getDocs(collection(db, 'conteudos'));
         const data = querySnapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))
-          .filter(item => item.category === 'unhas'); 
+          .filter(item => item.category === 'esmalte'); 
         setConteudosData(data);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
@@ -62,7 +62,10 @@ const CatalogoScreen = () => {
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-      <Image source={{ uri: item.imageUrl }} style={styles.logo} />
+      <Image 
+        source={{ uri: item.imageUrl }}
+        style={styles.logo} 
+      />
       <View style={styles.textContainer}>
         <Text style={styles.cardTitle}>{item.title}</Text>
       </View>
@@ -131,4 +134,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CatalogoScreen;
+export default CatalogoEScreen;
