@@ -5,11 +5,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Home from "./src/screens/HomeScreen";
 import CadastroScreen from "./src/screens/CadastroScreen";
+import CatalogoEScreen from "./src/screens/CatalogoEScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import PerfilScreen from "./src/screens/PerfilScreen";
 import FavoritosScreen from "./src/screens/FavoritosScreen";
 import SplashScreen from "./src/screens/SplashScreen";
 import CatalogoScreen from "./src/screens/CatalogoScreen";
+import Inicio from "./src/screens/Inicio"; 
+import EsqueceuSenha from "./src/screens/EsqueceuSenha"; 
+import RedefinirSenha from "./src/screens/RedefinirSenha"; 
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -67,7 +71,7 @@ function AppTabs() {
         options={({ navigation }) => ({
           tabBarLabel: "",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="albums" size={size} color={color} />
+            <Ionicons name="hand-left" size={size} color={color} />
           ),
           headerTitleAlign: "center",
           headerLeft: () => (
@@ -81,7 +85,26 @@ function AppTabs() {
           ),
         })}
       />
-     
+      <Tab.Screen
+        name="Catálogo de Esmaltes"
+        component={CatalogoEScreen}
+        options={({ navigation }) => ({
+          tabBarLabel: "",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="color-fill" size={size} color={color} />
+          ),
+          headerTitleAlign: "center",
+          headerLeft: () => (
+            <Ionicons
+              name="arrow-back"
+              size={24}
+              color="black"
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            />
+          ),
+        })}
+      />
       <Tab.Screen
         name="Favoritos"
         component={FavoritosScreen}
@@ -130,8 +153,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Inicio" component={Inicio} />
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="EsqueceuSenha" component={EsqueceuSenha} /> 
+        <Stack.Screen name="RedefinirSenha" component={RedefinirSenha} /> 
+        <Stack.Screen name="CadastroScreen" component={CadastroScreen} />
         <Stack.Screen name="AppTabs" component={AppTabs} />
       </Stack.Navigator>
     </NavigationContainer>
